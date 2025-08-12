@@ -4,21 +4,226 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>My GitHub Pages Site</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <!-- Embedded CSS: all styling is in this file -->
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#7dd3fc;
+      --accent-2:#a78bfa;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --maxw:900px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #071029 0%, #071a2b 60%), var(--bg);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:3rem 1rem;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--maxw);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius: var(--radius);
+      padding: clamp(1rem, 3vw, 2rem);
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      margin-bottom:1.25rem;
+    }
+    .brand{
+      display:flex;
+      gap:0.75rem;
+      align-items:center;
+    }
+    .logo{
+      width:44px;height:44px;border-radius:10px;
+      background: linear-gradient(135deg,var(--accent), var(--accent-2));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;color:#02203a;
+      box-shadow: 0 6px 18px rgba(124,58,237,0.12);
+    }
+    h1{font-size:1.25rem;margin:0}
+    p.lead{margin:0;color:var(--muted);font-size:0.95rem}
+
+    nav a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+      font-size:0.95rem;
+      border: 1px solid transparent;
+      padding:0.35rem 0.6rem;
+      border-radius:8px;
+    }
+    nav a:hover{background:rgba(125,211,252,0.06); border-color:rgba(125,211,252,0.08)}
+
+    main{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:1rem;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:1rem;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .hero{
+      display:flex;
+      gap:1rem;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .hero .left{
+      min-width:0;
+    }
+    .hero h2{margin:0 0 0.25rem 0;font-size:1.1rem}
+    .hero p{margin:0;color:var(--muted)}
+
+    .buttons{margin-top:0.75rem; display:flex; gap:0.5rem; flex-wrap:wrap}
+    .btn{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#05202d;
+      padding:0.5rem 0.75rem;
+      border-radius:10px;
+      font-weight:700;
+      text-decoration:none;
+      display:inline-block;
+      box-shadow: 0 6px 20px rgba(124,58,237,0.12);
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(125,211,252,0.12);
+      box-shadow:none;
+      font-weight:600;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:0.75rem;
+    }
+    .muted{color:var(--muted); font-size:0.95rem}
+
+    footer{
+      margin-top:1rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+
+    @media (max-width:520px){
+      body{padding:2rem 0.75rem}
+      .logo{width:40px;height:40px}
+      h1{font-size:1.05rem}
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to my GitHub Pages site</h1>
-    <p>Deployed with GitHub Pages ✨</p>
-  </header>
-  <main>
-    <section>
-      <h2>About</h2>
-      <p>This is a simple static site hosted by GitHub Pages.</p>
-    </section>
-  </main>
-  <footer>
-    <small>Made with ❤️</small>
-  </footer>
+  <div class="container" role="main">
+    <header>
+      <div class="brand">
+        <div class="logo">GH</div>
+        <div>
+          <h1>My GitHub Pages Site</h1>
+          <p class="lead">A tiny static site — HTML and CSS in one file</p>
+        </div>
+      </div>
+
+      <nav aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#contact" class="ghost btn" style="padding:0.4rem 0.6rem">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card hero" id="about">
+        <div class="left">
+          <h2>Deploy with GitHub Pages</h2>
+          <p class="muted">Save this file as <code>index.html</code>, push to your repo's <code>main</code> branch and enable Pages (branch: main, folder: /).</p>
+          <div class="buttons">
+            <a class="btn" href="https://github.com/new" target="_blank" rel="noopener">Create repo</a>
+            <a class="btn ghost" href="#features">Learn more</a>
+          </div>
+        </div>
+
+        <div style="min-width:180px;text-align:right">
+          <img alt="static site" src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' width='140' height='100' viewBox='0 0 140 100'>
+              <rect rx='10' width='140' height='100' fill='%230b1220'/>
+              <rect x='8' y='12' width='124' height='20' rx='6' fill='%237dd3fc' opacity='0.12'/>
+              <rect x='8' y='36' width='124' height='52' rx='6' fill='%23ffffff' opacity='0.03'/>
+              <rect x='16' y='44' width='40' height='6' rx='3' fill='%23e6eef6' opacity='0.12'/>
+              <rect x='16' y='54' width='96' height='6' rx='3' fill='%23e6eef6' opacity='0.06'/>
+            </svg>" style="max-width:120px;border-radius:8px;box-shadow:0 8px 24px rgba(2,6,23,0.5)">
+        </div>
+      </section>
+
+      <section class="card" id="features">
+        <h3 style="margin:0 0 0.5rem 0">Features</h3>
+        <div class="grid">
+          <div>
+            <strong>Single file</strong>
+            <p class="muted">All markup and styling live here — great for tiny project pages or demos.</p>
+          </div>
+          <div>
+            <strong>Responsive</strong>
+            <p class="muted">Layout adapts to mobile, tablet, and desktop widths.</p>
+          </div>
+          <div>
+            <strong>Easy to deploy</strong>
+            <p class="muted">Drop this into an <code>index.html</code> and enable GitHub Pages.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="contact">
+        <h3 style="margin:0 0 0.5rem 0">Contact / Next steps</h3>
+        <p class="muted">Want me to:
+          <ul style="margin:0.5rem 0 0 1rem;padding-left:1rem;color:var(--muted)">
+            <li>Customize the colors or heading text?</li>
+            <li>Add a form or deploy script (GitHub Actions)?</li>
+            <li>Convert to a simple Jekyll theme?</li>
+          </ul>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div>Made with ❤️ — Save as <code>index.html</code></div>
+      <div>Published via <strong>GitHub Pages</strong></div>
+    </footer>
+  </div>
 </body>
 </html>
+
